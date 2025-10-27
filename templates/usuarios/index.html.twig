@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listar usuarios{% endblock %}
+
+{% block body %}
+<h4>Listado de Usuarios</h4>
+<a href="{{ path('CreateUsers') }}">Crear usuario</a>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Identificacion</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in ListUsers %}
+            <tr>
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.FirstName }}</td>
+                <td>{{ user.LastName }}</td>
+                <td>{{ user.Nit }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.status }}</td>
+                <td>
+                    <a href="{{ path('actualizarUser', {'id': user.id}) }}">Actualizar</a>
+                    <a href="{{ path('deleteUser', {'id': user.id}) }}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}

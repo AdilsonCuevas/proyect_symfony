@@ -1,0 +1,23 @@
+render_login:
+    path: /usuarios/renderlogin
+    controller: App\Controller\UsuariosController::renderLogin
+
+index: 
+    path: /usuarios
+    controller: App\Controller\UsuariosController::index
+
+CreateUsers: 
+    path: /usuarios/create
+    controller: App\Controller\UsuariosController::CreateUsers
+
+deleteUser: 
+    path: /usuarios/eliminar/{id}
+    controller: App\Controller\UsuariosController::deleteUser
+
+actualizarUser: 
+    path: /usuarios/actualizar/{id}
+    controller: App\Controller\UsuariosController::actualizarUser
+
+api_login:
+    path: /api/login
+    controller: App\Controller\AuthController::login

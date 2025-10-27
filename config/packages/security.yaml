@@ -1,0 +1,36 @@
+security:
+    password_hashers:
+        App\Entity\Usuarios: 'auto'
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\Usuarios
+                property: email
+
+    firewalls:
+        # firewall para el endpoint de login (json_login)
+        login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        # firewall para las rutas api protegidas por JWT
+        api:
+            pattern: ^/api
+            stateless: true
+            jwt: ~
+
+        # dev, main o anonymous
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+    access_control:
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

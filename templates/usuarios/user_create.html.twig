@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restistro de usuarios{% endblock %}
+
+{% block body %}
+<h4 style="text-align: center;">Restristrar Usuarios</h4>
+<div class="container">
+    {{ form_start(form_users) }}
+    {{ form_row(form_users.FirstName) }}
+    {{ form_row(form_users.LastName) }}
+    {{ form_row(form_users.Nit) }}
+    {{ form_row(form_users.email) }}
+    {{ form_row(form_users.password) }}
+    {{ form_widget(form_users.submit) }}
+    {{ form_end(form_users) }}
+    <a href="{{ path('index') }}" class="btn btn-default">cancelar</a>
+</div>
+
+{% endblock %}
